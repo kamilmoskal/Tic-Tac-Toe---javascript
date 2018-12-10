@@ -1,4 +1,4 @@
-
+const pvx = document.querySelector("#changeopp");
 //////// PVP
 
 const bar = document.querySelectorAll(".bar");
@@ -78,14 +78,23 @@ function checkwhowon(e){
     }
 };
 
+let changingStart = 0;
 restart.addEventListener("click", function(e){
     bar.forEach( e => {
         e.innerHTML = ``;
         e.classList = "bar";
     })
-    moving.innerHTML = "Now moving ... X";
     status.style.display = "none";
     maxMoves = 0;
-    playerStatus = 1;
     winStatus = false;
+
+    if(changingStart == 0) {
+        playerStatus = 2;
+        changingStart = 1;
+        moving.innerHTML = "Now moving ... O";
+    } else {
+        playerStatus = 1;
+        changingStart = 0;
+        moving.innerHTML = "Now moving ... X";
+    }
 })
